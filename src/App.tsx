@@ -1,5 +1,7 @@
+import { Routes } from "./routes";
+
 function App() {
-	return <h1 className="text-red-300">hello world!</h1>;
+	return <Routes />;
 }
 
 export default App;
