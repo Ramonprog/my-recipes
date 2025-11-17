@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import RootLayout from "@/components/ui/root-layout";
 import NotFunction from "@/pages/not-found";
 import { PathRoutes } from "@/@types/enums";
+import { NewRecipesPage } from "@/pages/new-recipes";
 
 const router = createBrowserRouter([
 	{
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: PathRoutes.NEW_RECIPE,
-				element: <h1>Nova receita</h1>,
+				element: <NewRecipesPage />,
 			},
 			{
 				path: PathRoutes.FAVOTIRE_RECIPES,
