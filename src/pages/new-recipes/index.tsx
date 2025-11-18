@@ -17,9 +17,17 @@ export function NewRecipesPage() {
 		},
 	});
 
+	const { handleSubmit } = methods;
+
+	const onsubmit = (values: RecipeFormData) => {
+		debugger;
+	};
 	return (
 		<FormProvider {...methods}>
-			<form className="bg-white max-w-1/2 mx-auto h-auto rounded-md shadow-sm mt-6">
+			<form
+				onSubmit={handleSubmit(onsubmit)}
+				className="bg-white max-w-1/2 mx-auto h-auto rounded-md shadow-sm mt-6"
+			>
 				<RecipesFormFields />
 			</form>
 		</FormProvider>

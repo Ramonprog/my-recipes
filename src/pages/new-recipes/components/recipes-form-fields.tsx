@@ -1,19 +1,43 @@
+import { useFormContext } from "react-hook-form";
+
 export function RecipesFormFields() {
-	const fields = [{ name: "title", label: "Título" }];
+	const { register } = useFormContext();
+	const fields = [
+		{ name: "title", label: "Título", type: "text" },
+		{ name: "cookingTimeInMinutes", label: "Tempo de Cozimento", type: "text" },
+		{ name: "description", label: "Descrição", type: "textarea" },
+	];
 	return (
 		<div className="flex flex-col">
 			{fields.map((f) => {
 				return (
 					<div className="" key={f.name}>
-						<label htmlFor="title">Título</label>
-						<input
-							type="text"
-							name="title"
-							className="w-full border border-gray-200 rounded-sm py-2 bg-gray-100 outline-none"
-						/>
+						<label htmlFor={f.name}>{f.label}</label>
+						{f.type === "text" ? (
+							<input
+								{...register(f.name)}
+								type="text"
+								id={f.name}
+								className="w-full border border-gray-200 rounded-sm py-2 bg-gray-100 outline-none"
+							/>
+						) : (
+							<textarea
+								{...register(f.name)}
+								name={f.name}
+								className="w-full border border-gray-200 rounded-sm bg-gray-100 outline-none"
+								rows={6}
+								id={f.name}
+							/>
+						)}
 					</div>
 				);
 			})}
+			<button
+				type="submit"
+				className="w-full bg-orange-600 px-4 py-2 rounded-md text-white font-semibold cursor-pointer hover:opacity-80"
+			>
+				Publicar Receita
+			</button>
 		</div>
 	);
 }
