@@ -6,3 +6,5 @@ export const recipeSchema = z.object({
 	cookingTimeInMinuts: z.string(),
 	image: z.string(),
 });
+
+export type RecipeFormData = z.infer<typeof recipeSchema>
