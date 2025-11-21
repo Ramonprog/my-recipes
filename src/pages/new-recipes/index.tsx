@@ -2,11 +2,13 @@ import {
 	recipeSchema,
 	type RecipeFormData,
 } from "@/@types/schemas/recipes.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
 import { RecipesFormFields } from "./components/recipes-form-fields";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { UseRecipe } from "@/hooks/use-recipe";
 
 export function NewRecipesPage() {
+	const { storeRecipe } = UseRecipe();
 	const methods = useForm<RecipeFormData>({
 		resolver: zodResolver(recipeSchema),
 		defaultValues: {
@@ -20,8 +22,9 @@ export function NewRecipesPage() {
 	const { handleSubmit } = methods;
 
 	const onsubmit = (values: RecipeFormData) => {
-		debugger;
+		storeRecipe(values);
 	};
+
 	return (
 		<FormProvider {...methods}>
 			<form
