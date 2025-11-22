@@ -11,9 +11,5 @@ export function UseRecipe() {
     dispach(addRecipe(values))
   }
 
-  function listRecipes() {
-    return recipes
-  }
-
-  return {storeRecipe, listRecipes}
+  return {storeRecipe, recipes}
 }

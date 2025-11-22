@@ -8,7 +8,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UseRecipe } from "@/hooks/use-recipe";
 
 export function NewRecipesPage() {
-	const { storeRecipe } = UseRecipe();
+	const { storeRecipe, recipes } = UseRecipe();
+
+	console.log("🚀 ~ NewRecipesPage ~ listRecipes:", recipes);
+
 	const methods = useForm<RecipeFormData>({
 		resolver: zodResolver(recipeSchema),
 		defaultValues: {
