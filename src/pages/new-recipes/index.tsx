@@ -7,6 +7,7 @@ import { RecipesFormFields } from "./components/recipes-form-fields";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UseRecipe } from "@/hooks/use-recipe";
 import { toast } from "sonner";
+import { RecipesHeader } from "./components/recipes-header";
 
 export function NewRecipesPage() {
 	const { storeRecipe, recipes } = UseRecipe();
@@ -23,15 +24,17 @@ export function NewRecipesPage() {
 		},
 	});
 
-	const { handleSubmit } = methods;
+	const { handleSubmit, reset } = methods;
 
 	const onsubmit = (values: RecipeFormData) => {
 		storeRecipe(values);
+		reset();
 		toast.success("Receita adicionada com sucesso!");
 	};
 
 	return (
 		<FormProvider {...methods}>
+			<RecipesHeader />
 			<form
 				onSubmit={handleSubmit(onsubmit)}
 				className="bg-white max-w-1/2 mx-auto h-auto rounded-md shadow-sm mt-6"

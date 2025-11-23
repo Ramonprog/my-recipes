@@ -3,13 +3,15 @@ import { RecipeImageField } from "./recipes-image-field";
 
 export function RecipesFormFields() {
 	const { register } = useFormContext();
+
 	const fields = [
 		{ name: "title", label: "Título", type: "text" },
 		{ name: "cookingTimeInMinutes", label: "Tempo de Cozimento", type: "text" },
 		{ name: "description", label: "Descrição", type: "textarea" },
 	];
+
 	return (
-		<div className="flex flex-col">
+		<div className="flex flex-col gap-6 px-10 py-6">
 			{fields.map((f) => {
 				return (
 					<div className="" key={f.name}>
