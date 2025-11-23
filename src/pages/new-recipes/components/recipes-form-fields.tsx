@@ -1,4 +1,5 @@
 import { useFormContext } from "react-hook-form";
+import { RecipeImageField } from "./recipes-image-field";
 
 export function RecipesFormFields() {
 	const { register } = useFormContext();
@@ -32,6 +33,8 @@ export function RecipesFormFields() {
 					</div>
 				);
 			})}
+
+			<RecipeImageField />
 			<button
 				type="submit"
 				className="w-full bg-orange-600 px-4 py-2 rounded-md text-white font-semibold cursor-pointer hover:opacity-80"

@@ -1,5 +1,29 @@
+import { fileToBase64 } from "@/utils";
 import type { ChangeEventHandler } from "react";
 import { useDropzone } from "react-dropzone";
+import { Controller, useFormContext } from "react-hook-form";
+
+export function RecipeImageField({ ...rest }) {
+	const { control } = useFormContext();
+	return (
+		<Controller
+			name="image"
+			control={control}
+			render={({ field: { onChange } }) => (
+				<DropZone
+					{...rest}
+					onChange={async (e) => {
+						const file = e.target.files?.[0] ?? null;
+						if (file) {
+							const base64file = await fileToBase64(file);
+							onChange(base64file);
+						}
+					}}
+				/>
+			)}
+		/>
+	);
+}
 
 export function DropZone({
 	onChange,
@@ -8,6 +32,7 @@ export function DropZone({
 	onChange?: ChangeEventHandler<HTMLInputElement>;
 }) {
 	const { getRootProps, getInputProps } = useDropzone({ multiple: false });
+
 	return (
 		<div
 			{...getRootProps()}

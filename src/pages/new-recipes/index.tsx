@@ -25,6 +25,8 @@ export function NewRecipesPage() {
 	const { handleSubmit } = methods;
 
 	const onsubmit = (values: RecipeFormData) => {
+		console.log("🚀 ~ onsubmit ~ values:", values);
+
 		storeRecipe(values);
 	};
 
