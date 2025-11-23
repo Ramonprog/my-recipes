@@ -1,3 +1,4 @@
+import { Toaster } from "sonner";
 import { Routes } from "./routes";
 import { persistor, store } from "./store";
 import { Provider } from "react-redux";
@@ -8,6 +9,7 @@ function App() {
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
 				<Routes />
+				<Toaster position="top-right" richColors />
 			</PersistGate>
 		</Provider>
 	);

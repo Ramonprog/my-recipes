@@ -6,6 +6,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { RecipesFormFields } from "./components/recipes-form-fields";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UseRecipe } from "@/hooks/use-recipe";
+import { toast } from "sonner";
 
 export function NewRecipesPage() {
 	const { storeRecipe, recipes } = UseRecipe();
@@ -25,9 +26,8 @@ export function NewRecipesPage() {
 	const { handleSubmit } = methods;
 
 	const onsubmit = (values: RecipeFormData) => {
-		console.log("🚀 ~ onsubmit ~ values:", values);
-
 		storeRecipe(values);
+		toast.success("Receita adicionada com sucesso!");
 	};
 
 	return (
