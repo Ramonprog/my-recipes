@@ -3,6 +3,7 @@ import RootLayout from "@/components/ui/root-layout";
 import NotFunction from "@/pages/not-found";
 import { PathRoutes } from "@/@types/enums";
 import { NewRecipesPage } from "@/pages/new-recipes";
+import { HomePage } from "@/pages/home";
 
 const router = createBrowserRouter([
 	{
@@ -11,7 +12,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: PathRoutes.HOME,
-				element: <h1>Home</h1>,
+				element: <HomePage />,
 			},
 			{
 				path: PathRoutes.NEW_RECIPE,
