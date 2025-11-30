@@ -7,9 +7,13 @@ export function UseRecipe() {
   const dispach = useDispatch()
   const recipes = useSelector((state: RootState) => state.recipes.items)
 
-  function storeRecipe(values: RecipeFormData){
+  function storeRecipe(values: RecipeFormData) {
     dispach(addRecipe(values))
   }
 
-  return {storeRecipe, recipes}
+  function findRecipe(id: string) {
+    return recipes.find(r => r.id === id) || null
+  }
+
+  return { storeRecipe, recipes, findRecipe }
 }
