@@ -3,4 +3,5 @@ export interface IRecipes {
   description: string;
   cookingTimeInMinuts: number;
   image: string;
+  id: string
 }

@@ -4,36 +4,37 @@ import NotFunction from "@/pages/not-found";
 import { PathRoutes } from "@/@types/enums";
 import { NewRecipesPage } from "@/pages/new-recipes";
 import { HomePage } from "@/pages/home";
+import { Recipe } from "@/pages/recipe";
 
 const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <RootLayout />,
-		children: [
-			{
-				path: PathRoutes.HOME,
-				element: <HomePage />,
-			},
-			{
-				path: PathRoutes.NEW_RECIPE,
-				element: <NewRecipesPage />,
-			},
-			{
-				path: PathRoutes.FAVOTIRE_RECIPES,
-				element: <h1>heceitas favoritas</h1>,
-			},
-			{
-				path: PathRoutes.RECIPE,
-				element: <h1>heceita</h1>,
-			},
-		],
-	},
-	{
-		path: "*",
-		element: <NotFunction />,
-	},
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      {
+        path: PathRoutes.HOME,
+        element: <HomePage />,
+      },
+      {
+        path: PathRoutes.NEW_RECIPE,
+        element: <NewRecipesPage />,
+      },
+      {
+        path: PathRoutes.FAVOTIRE_RECIPES,
+        element: <h1>heceitas favoritas</h1>,
+      },
+      {
+        path: PathRoutes.RECIPE,
+        element: <Recipe />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <NotFunction />,
+  },
 ]);
 
 export function Routes() {
-	return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 }
