@@ -5,6 +5,7 @@ import { PathRoutes } from "@/@types/enums";
 import { NewRecipesPage } from "@/pages/new-recipes";
 import { HomePage } from "@/pages/home";
 import { Recipe } from "@/pages/recipe";
+import { FavoriteRecipes } from "@/pages/favorite-recipes";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: PathRoutes.FAVOTIRE_RECIPES,
-        element: <h1>heceitas favoritas</h1>,
+        element: <FavoriteRecipes />,
       },
       {
         path: PathRoutes.RECIPE,

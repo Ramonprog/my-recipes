@@ -1,36 +1,38 @@
 import localStorage from "redux-persist/lib/storage";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import recipesSlice from "./features/recipes/recipesSlice";
+import favoriteSlice from './features/favorite/favoriteRecipeSlice'
 import persistReducer from "redux-persist/es/persistReducer";
 import {
-	FLUSH,
-	PAUSE,
-	PERSIST,
-	PURGE,
-	REGISTER,
-	REHYDRATE,
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
 } from "redux-persist";
 import persistStore from "redux-persist/es/persistStore";
 
 
 // ---------------------- CRIAÇÃO DO ROOT REDUCER --------------------------
 const rootReducer = combineReducers({
-	// Aqui registramos todos os reducers da aplicação
-	// O estado final terá a propriedade "recipes"
-	recipes: recipesSlice,
+  // Aqui registramos todos os reducers da aplicação
+  // O estado final terá a propriedade "recipes"
+  recipes: recipesSlice,
+  favorite: favoriteSlice
 });
 
 
 // ---------------------- CONFIGURAÇÃO DO REDUX PERSIST -------------------
 const persistConfig = {
-	// Nome da chave que será usada no localStorage
-	key: "root",
+  // Nome da chave que será usada no localStorage
+  key: "root",
 
-	// Define que o storage usado será o localStorage do navegador
-	storage: localStorage,
+  // Define que o storage usado será o localStorage do navegador
+  storage: localStorage,
 
-	// Lista branca: apenas estes reducers serão persistidos
-	whitelist: ["recipes"],
+  // Lista branca: apenas estes reducers serão persistidos
+  whitelist: ["recipes", "favorite"],
 };
 
 
@@ -41,18 +43,18 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // ---------------------- CONFIGURAÇÃO DA STORE ---------------------------
 export const store = configureStore({
-	// Usa o reducer persistido ao invés do rootReducer normal
-	reducer: persistedReducer,
+  // Usa o reducer persistido ao invés do rootReducer normal
+  reducer: persistedReducer,
 
-	// Configura os middlewares padrão
-	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware({
-			serializableCheck: {
-				// Ignora ações do Redux Persist que não são serializáveis
-				// Isso evita warnings no console
-				ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-			},
-		}),
+  // Configura os middlewares padrão
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        // Ignora ações do Redux Persist que não são serializáveis
+        // Isso evita warnings no console
+        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 

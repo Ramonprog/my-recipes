@@ -1,9 +1,23 @@
 import type { IRecipes } from "@/@types/interfaces";
+import { useFavoriteRecipe } from "@/hooks/use-favorite-recipe";
+import { FavoriteRecipes } from "@/pages/favorite-recipes";
+import { toast } from "sonner";
 
 interface RecipeHeaderProps {
   recipe: IRecipes;
 }
 export function RecipeHeader({ recipe }: RecipeHeaderProps) {
+  const { AddfavoriteRecipe, removeFavoriteRecipe } = useFavoriteRecipe();
+
+  function onFavorite() {
+    AddfavoriteRecipe(recipe);
+    toast.success("Receita adicionada aos favoritos");
+  }
+
+  const isRecipeFavorite = FavoriteRecipes(
+    (recipeId) => (recipeId == recipeId) == recipe.id
+  );
+
   return (
     <div className="w-full bg-white shadow-lg flex items-center space-x-4 p-4 rounded-xl">
       <img
@@ -29,8 +43,9 @@ export function RecipeHeader({ recipe }: RecipeHeaderProps) {
         <button
           type="button"
           className="bg-orange-600 w-32 text-white font-semibold text-sm rounded-xl cursor-pointer hover:opacity-80 py-2"
+          onClick={onFavorite}
         >
-          Compartilhar
+          Favoritar
         </button>
       </div>
     </div>
